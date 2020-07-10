@@ -1,4 +1,4 @@
-const createTaskCardComponent = () => {
+export const createTaskCardComponent = () => {
   return (
     `<article class="card card--black">
       <div class="card__form">

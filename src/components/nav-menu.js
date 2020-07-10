@@ -1,4 +1,4 @@
-const createNavigationMenuComponent = () => {
+export const createNavigationMenuComponent = () => {
   return (
     `<section class="control__btn-wrap">
       <input
