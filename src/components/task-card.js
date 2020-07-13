@@ -1,12 +1,7 @@
 export const createTaskCardComponent = (amount) => {
-  const {} = amount;
-
-  const color = `black`;
+  const {description, dueDate, color, repeatingDays, isArchive, isFavorite} = amount;
   const repeatClass = `card--repeat`;
   const deadlineClass = `card--deadline`;
-  const isArchive = true;
-  const isFavorite = false;
-  const description = `Example default task with default color.`;
   const date = `23 September`;
   const time = `16:15`;
   const archiveButtonInactiveClass = isArchive ? `` : `card__btn--disabled`;
