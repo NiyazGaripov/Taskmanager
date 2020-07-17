@@ -26,6 +26,6 @@ renderComponent(taskCardsElement, createTaskEditCardComponent(cards[0]));
 
 for (let i = 0; i < cards.length; i++) {
   renderComponent(taskCardsElement, createTaskCardComponent(cards[i]));
-};
+}
 
 renderComponent(boardElement, createLoadMoreButtonComponent());
