@@ -1,5 +1,6 @@
 import {MONTH_NAMES, DAYS} from './../constants.js';
 import {getTime} from './../utils/time.js';
+import {createRepeatingDaysComponent} from './days.js';
 
 export const createTaskEditCardComponent = (amount) => {
   const {description, dueDate, color, repeatingDays} = amount;
@@ -10,6 +11,7 @@ export const createTaskEditCardComponent = (amount) => {
   const deadlineClass = isExpired ? `card--deadline` : ``;
   const date = isDateShowing ? `${dueDate.getDate()} ${MONTH_NAMES[dueDate.getMonth()]}` : ``;
   const time = isDateShowing ? getTime(dueDate) : ``;
+  const repeatingDaysComponent = createRepeatingDaysComponent(DAYS, repeatingDays);
 
   return (
     `<article class="card card--edit card--${color} ${repeatClass} ${deadlineClass}">
@@ -51,83 +53,13 @@ export const createTaskEditCardComponent = (amount) => {
                 <button class="card__repeat-toggle" type="button">
                   repeat:<span class="card__repeat-status">${isRepeatingTask ? `yes` : `no`}</span>
                 </button>
-                <fieldset class="card__repeat-days">
+                ${isRepeatingTask ?
+                `<fieldset class="card__repeat-days">
                   <div class="card__repeat-days-inner">
-                    <input
-                      class="visually-hidden card__repeat-day-input"
-                      type="checkbox"
-                      id="repeat-mo-4"
-                      name="repeat"
-                      value="mo"
-                    />
-                    <label class="card__repeat-day" for="repeat-mo-4"
-                      >mo</label
-                    >
-                    <input
-                      class="visually-hidden card__repeat-day-input"
-                      type="checkbox"
-                      id="repeat-tu-4"
-                      name="repeat"
-                      value="tu"
-                      checked
-                    />
-                    <label class="card__repeat-day" for="repeat-tu-4"
-                      >tu</label
-                    >
-                    <input
-                      class="visually-hidden card__repeat-day-input"
-                      type="checkbox"
-                      id="repeat-we-4"
-                      name="repeat"
-                      value="we"
-                    />
-                    <label class="card__repeat-day" for="repeat-we-4"
-                      >we</label
-                    >
-                    <input
-                      class="visually-hidden card__repeat-day-input"
-                      type="checkbox"
-                      id="repeat-th-4"
-                      name="repeat"
-                      value="th"
-                    />
-                    <label class="card__repeat-day" for="repeat-th-4"
-                      >th</label
-                    >
-                    <input
-                      class="visually-hidden card__repeat-day-input"
-                      type="checkbox"
-                      id="repeat-fr-4"
-                      name="repeat"
-                      value="fr"
-                      checked
-                    />
-                    <label class="card__repeat-day" for="repeat-fr-4"
-                      >fr</label
-                    >
-                    <input
-                      class="visually-hidden card__repeat-day-input"
-                      type="checkbox"
-                      name="repeat"
-                      value="sa"
-                      id="repeat-sa-4"
-                    />
-                    <label class="card__repeat-day" for="repeat-sa-4"
-                      >sa</label
-                    >
-                    <input
-                      class="visually-hidden card__repeat-day-input"
-                      type="checkbox"
-                      id="repeat-su-4"
-                      name="repeat"
-                      value="su"
-                      checked
-                    />
-                    <label class="card__repeat-day" for="repeat-su-4"
-                      >su</label
-                    >
+                    ${repeatingDaysComponent}
                   </div>
-                </fieldset>
+                </fieldset>`
+                : ``}
               </div>
             </div>
             <div class="card__colors-inner">
