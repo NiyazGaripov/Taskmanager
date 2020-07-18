@@ -9,7 +9,9 @@ import {createLoadMoreButtonComponent} from './components/load-more-button.js';
 
 import {generateCards} from './mock/card.js';
 
-const TASK_CARDS_AMOUNT = 3;
+const TASK_CARDS_AMOUNT = 22;
+const TASK_CARDS_AMOUNT_ON_START = 8;
+const TASK_CARDS_AMOUNT_LOAD_MORE = 8;
 const cards = generateCards(TASK_CARDS_AMOUNT);
 
 const pageMainElement = document.querySelector(`.main`);
