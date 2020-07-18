@@ -1,4 +1,5 @@
 import {getRandomIntegerNumber, getRandomArrayItem} from './../utils/common.js';
+import {COLORS} from './../constants.js';
 
 const DefaultRepeatingDays = {
   "mo": false,
@@ -38,7 +39,7 @@ const generateCard = () => {
   return {
     description: getRandomArrayItem(DESCRIPTION_CARDS),
     dueDate,
-    color: `black`,
+    color: getRandomArrayItem(COLORS),
     repeatingDays: Object.assign({}, DefaultRepeatingDays, {"mo": Math.random() > 0.5}),
     isArchive: Math.random() > 0.5,
     isFavorite: Math.random() > 0.5,
