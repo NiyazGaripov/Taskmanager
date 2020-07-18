@@ -15,7 +15,9 @@ const createFiltersComponent = (filters, isChecked) => {
   );
 };
 
-export const createFilterComponent = () => {
+export const createFilterComponent = (filters) => {
+  const filtersComponent = filters.map((filter, index) => createFiltersComponent(filter, index === 0)).join(`\n`);
+
   return (
     `<section class="main__filter filter container">
       <input
