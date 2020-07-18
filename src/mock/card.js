@@ -1,21 +1,5 @@
 import {getRandomIntegerNumber, getRandomArrayItem} from './../utils/common.js';
-import {COLORS} from './../constants.js';
-
-const DefaultRepeatingDays = {
-  "mo": false,
-  "tu": false,
-  "we": false,
-  "th": false,
-  "fr": false,
-  "sa": false,
-  "su": false,
-};
-
-const DESCRIPTION_CARDS = [
-  `Изучить теорию`,
-  `Сделать домашку`,
-  `Пройти интенсив на соточку`,
-];
+import {COLORS, DefaultRepeatingDays, DESCRIPTION_CARDS} from './../constants.js';
 
 const getRandomDate = () => {
   const targetDate = new Date();
