@@ -10,6 +10,7 @@ import {createLoadMoreButtonComponent} from './components/load-more-button.js';
 import {generateCards} from './mock/card.js';
 import {generateFilters} from './mock/filter.js';
 
+const BEGIN_INDEX = 0;
 const TASK_CARDS_AMOUNT = 22;
 const TASK_CARDS_AMOUNT_ON_START = 8;
 const TASK_CARDS_AMOUNT_LOAD_MORE = 8;
@@ -28,8 +29,12 @@ const boardElement = pageMainElement.querySelector(`.board`);
 
 renderComponent(taskCardsElement, createTaskEditCardComponent(cards[0]));
 
-for (let i = 0; i < cards.length; i++) {
-  renderComponent(taskCardsElement, createTaskCardComponent(cards[i]));
-}
+let showingTaskCards = TASK_CARDS_AMOUNT_ON_START;
+
+cards
+  .slice(BEGIN_INDEX, showingTaskCards)
+  .forEach((card) => {
+    renderComponent(taskCardsElement, createTaskCardComponent(card));
+  });
 
 renderComponent(boardElement, createLoadMoreButtonComponent());
