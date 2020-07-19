@@ -8,18 +8,20 @@ import {createTaskCardComponent} from './components/task-card.js';
 import {createLoadMoreButtonComponent} from './components/load-more-button.js';
 
 import {generateCards} from './mock/card.js';
+import {generateFilters} from './mock/filter.js';
 
 const TASK_CARDS_AMOUNT = 22;
 const TASK_CARDS_AMOUNT_ON_START = 8;
 const TASK_CARDS_AMOUNT_LOAD_MORE = 8;
 const cards = generateCards(TASK_CARDS_AMOUNT);
+const filters = generateFilters();
 
 const pageMainElement = document.querySelector(`.main`);
 const pageMenuElement = pageMainElement.querySelector(`.main__control`);
 
 renderComponent(pageMenuElement, createNavigationMenuComponent());
 renderComponent(pageMainElement, createFilterComponent());
-renderComponent(pageMainElement, createSortComponent());
+renderComponent(pageMainElement, createSortComponent(filters));
 
 const taskCardsElement = pageMainElement.querySelector(`.board__tasks`);
 const boardElement = pageMainElement.querySelector(`.board`);
