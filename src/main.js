@@ -38,3 +38,19 @@ cards
   });
 
 renderComponent(boardElement, createLoadMoreButtonComponent());
+
+const loadMoreButton = boardElement.querySelector(`.load-more`);
+
+loadMoreButton.addEventListener(`click`, () => {
+  const prevTaskCards = showingTaskCards;
+  showingTaskCards = showingTaskCards + TASK_CARDS_AMOUNT_LOAD_MORE;
+
+  cards
+    .slice(prevTaskCards, showingTaskCards)
+    .forEach((card) => {
+      renderComponent(taskCardsElement, createTaskCardComponent(card));
+    });
+  if (showingTaskCards >= cards.length) {
+    loadMoreButton.remove();
+  }
+});
