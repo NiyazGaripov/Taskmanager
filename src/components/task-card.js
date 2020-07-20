@@ -66,4 +66,12 @@ export class Task {
   getTemplate() {
     return createTaskCardComponent(this._task);
   }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
 }
