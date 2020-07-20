@@ -13,7 +13,7 @@ const getRandomDate = () => {
 
 const generateRepeatingDays = () => {
   return Object.assign({}, DefaultRepeatingDays, {
-    "mo": Math.random() > 0.5,
+    mo: Math.random() > 0.5,
   });
 };
 
