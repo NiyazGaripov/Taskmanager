@@ -1,4 +1,6 @@
-export const createSortComponent = () => {
+import {createElement} from './../utils/render.js';
+
+const createSortComponent = () => {
   return (
     `<section class="board container">
       <div class="board__filter-list">
