@@ -1,4 +1,6 @@
-export const createNavigationMenuComponent = () => {
+import {createElement} from './../utils/render.js';
+
+const createNavigationMenuComponent = () => {
   return (
     `<section class="control__btn-wrap">
       <input
