@@ -1,3 +1,5 @@
+import {createElement} from './../utils/render.js';
+
 const createFiltersComponent = (filters, isChecked) => {
   const {name, count} = filters;
 
@@ -15,7 +17,7 @@ const createFiltersComponent = (filters, isChecked) => {
   );
 };
 
-export const createFilterComponent = (filters) => {
+const createFilterComponent = (filters) => {
   const filtersComponent = filters.map((filter, index) => createFiltersComponent(filter, index === 0)).join(`\n`);
 
   return (
@@ -24,3 +26,26 @@ export const createFilterComponent = (filters) => {
     </section>`
   );
 };
+
+export class Filter {
+  constructor(filters) {
+    this._filters = filters;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createFilterComponent(this._filters);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
