@@ -1,10 +1,11 @@
 import {MONTH_NAMES, DAYS, COLORS} from './../constants.js';
 import {getTime} from './../utils/time.js';
+import {createElement} from './../utils/render.js';
 import {createRepeatingDaysComponent} from './days.js';
 import {createColorsComponent} from './colors.js';
 
-export const createTaskEditCardComponent = (amount) => {
-  const {description, dueDate, color, repeatingDays} = amount;
+const createTaskEditCardComponent = (task) => {
+  const {description, dueDate, color, repeatingDays} = task;
   const isExpired = dueDate instanceof Date && dueDate < Date.now();
   const isDateShowing = !!dueDate;
   const isRepeatingTask = Object.values(repeatingDays).some(Boolean);
@@ -80,3 +81,26 @@ export const createTaskEditCardComponent = (amount) => {
     </article>`
   );
 };
+
+export class TaskEditCard {
+  constructor(task) {
+    this._task = task;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createTaskEditCardComponent(this._task);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
