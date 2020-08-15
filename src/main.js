@@ -23,3 +23,4 @@ const pageMainElement = document.querySelector(`.main`);
 const pageMenuElement = pageMainElement.querySelector(`.main__control`);
 
 renderComponent(pageMenuElement, new NavigationMenu().getElement(), RenderPosition.BEFOREEND);
+renderComponent(pageMainElement, new Filter(filters).getElement(), RenderPosition.BEFOREEND);
