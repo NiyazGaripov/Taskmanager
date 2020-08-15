@@ -1,11 +1,13 @@
-import {renderComponent} from './utils/render.js';
+import {RenderPosition, renderComponent} from './utils/render.js';
 
-import {createNavigationMenuComponent} from './components/nav-menu.js';
-import {createFilterComponent} from './components/filter.js';
-import {createSortComponent} from './components/sorting.js';
-import {createTaskEditCardComponent} from './components/task-edit-card.js';
-import {createTaskCardComponent} from './components/task-card.js';
-import {createLoadMoreButtonComponent} from './components/load-more-button.js';
+import {NavigationMenu} from './components/nav-menu.js';
+import {Filter} from './components/filter.js';
+import {Board} from './components/board.js';
+import {TaskList} from './components/task-list.js';
+import {Sort} from './components/sorting.js';
+import {TaskEditCard} from './components/task-edit-card.js';
+import {Task} from './components/task-card.js';
+import {LoadMoreButton} from './components/load-more-button.js';
 
 import {generateCards} from './mock/card.js';
 import {generateFilters} from './mock/filter.js';
@@ -20,24 +22,24 @@ const filters = generateFilters();
 const pageMainElement = document.querySelector(`.main`);
 const pageMenuElement = pageMainElement.querySelector(`.main__control`);
 
-renderComponent(pageMenuElement, createNavigationMenuComponent());
-renderComponent(pageMainElement, createFilterComponent());
-renderComponent(pageMainElement, createSortComponent(filters));
+// renderComponent(pageMenuElement, createNavigationMenuComponent());
+// renderComponent(pageMainElement, createFilterComponent());
+// renderComponent(pageMainElement, createSortComponent(filters));
 
 const taskCardsElement = pageMainElement.querySelector(`.board__tasks`);
 const boardElement = pageMainElement.querySelector(`.board`);
 
-renderComponent(taskCardsElement, createTaskEditCardComponent(cards[0]));
+// renderComponent(taskCardsElement, createTaskEditCardComponent(cards[0]));
 
 let showingTaskCards = TASK_CARDS_AMOUNT_ON_START;
 
 cards
   .slice(BEGIN_INDEX, showingTaskCards)
   .forEach((card) => {
-    renderComponent(taskCardsElement, createTaskCardComponent(card));
+    // renderComponent(taskCardsElement, createTaskCardComponent(card));
   });
 
-renderComponent(boardElement, createLoadMoreButtonComponent());
+// renderComponent(boardElement, createLoadMoreButtonComponent());
 
 const loadMoreButton = boardElement.querySelector(`.load-more`);
 
@@ -48,7 +50,7 @@ loadMoreButton.addEventListener(`click`, () => {
   cards
     .slice(prevTaskCards, showingTaskCards)
     .forEach((card) => {
-      renderComponent(taskCardsElement, createTaskCardComponent(card));
+      // renderComponent(taskCardsElement, createTaskCardComponent(card));
     });
   if (showingTaskCards >= cards.length) {
     loadMoreButton.remove();
