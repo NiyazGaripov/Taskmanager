@@ -21,38 +21,3 @@ const filters = generateFilters();
 
 const pageMainElement = document.querySelector(`.main`);
 const pageMenuElement = pageMainElement.querySelector(`.main__control`);
-
-// renderComponent(pageMenuElement, createNavigationMenuComponent());
-// renderComponent(pageMainElement, createFilterComponent());
-// renderComponent(pageMainElement, createSortComponent(filters));
-
-const taskCardsElement = pageMainElement.querySelector(`.board__tasks`);
-const boardElement = pageMainElement.querySelector(`.board`);
-
-// renderComponent(taskCardsElement, createTaskEditCardComponent(cards[0]));
-
-let showingTaskCards = TASK_CARDS_AMOUNT_ON_START;
-
-cards
-  .slice(BEGIN_INDEX, showingTaskCards)
-  .forEach((card) => {
-    // renderComponent(taskCardsElement, createTaskCardComponent(card));
-  });
-
-// renderComponent(boardElement, createLoadMoreButtonComponent());
-
-const loadMoreButton = boardElement.querySelector(`.load-more`);
-
-loadMoreButton.addEventListener(`click`, () => {
-  const prevTaskCards = showingTaskCards;
-  showingTaskCards = showingTaskCards + TASK_CARDS_AMOUNT_LOAD_MORE;
-
-  cards
-    .slice(prevTaskCards, showingTaskCards)
-    .forEach((card) => {
-      // renderComponent(taskCardsElement, createTaskCardComponent(card));
-    });
-  if (showingTaskCards >= cards.length) {
-    loadMoreButton.remove();
-  }
-});
