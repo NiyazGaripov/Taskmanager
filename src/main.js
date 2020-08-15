@@ -75,3 +75,7 @@ const pageMenuElement = pageMainElement.querySelector(`.main__control`);
 
 renderComponent(pageMenuElement, new NavigationMenu().getElement());
 renderComponent(pageMainElement, new Filter(filters).getElement());
+
+const boardComponent = new Board();
+renderComponent(pageMainElement, boardComponent.getElement());
+renderBoard(boardComponent, cards);
