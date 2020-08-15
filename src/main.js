@@ -21,3 +21,5 @@ const filters = generateFilters();
 
 const pageMainElement = document.querySelector(`.main`);
 const pageMenuElement = pageMainElement.querySelector(`.main__control`);
+
+renderComponent(pageMenuElement, new NavigationMenu().getElement(), RenderPosition.BEFOREEND);
