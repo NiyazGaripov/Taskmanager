@@ -38,6 +38,9 @@ const renderTaskCards = (taskCardsElement, card) => {
 };
 
 const renderBoard = (boardComponent, cards) => {
+  renderComponent(boardComponent.getElement(), new Sort().getElement());
+  renderComponent(boardComponent.getElement(), new TaskList().getElement());
+
   const taskCardsElement = boardComponent.getElement().querySelector(`.board__tasks`);
 
   let showingTasksAmount = TASK_CARDS_AMOUNT_ON_START;
