@@ -16,6 +16,27 @@ const BEGIN_INDEX = 0;
 const TASK_CARDS_AMOUNT = 22;
 const TASK_CARDS_AMOUNT_ON_START = 8;
 const TASK_CARDS_AMOUNT_LOAD_MORE = 8;
+
+const renderTaskCards = (taskCardsElement, card) => {
+  const onEditButtonClick = () => {
+    taskCardsElement.replaceChild(TaskEditCard.getElement(), Task.getElement());
+  };
+
+  const onEditFormSubmit = () => {
+    taskCardsElement.replaceChild(Task.getElement(), TaskEditCard.getElement());
+  };
+
+  const taskComponent = new Task(card);
+  const editButton = taskComponent.getElement().querySelector(`.card__btn--edit`);
+  editButton.addEventListener(`click`, onEditButtonClick);
+
+  const taskEditComponent = new TaskEditCard(card);
+  const editForm = taskEditComponent.getElement().querySelector(`form`);
+  editForm.addEventListener(`submit`, onEditFormSubmit);
+
+  renderComponent(taskCardsElement, taskComponent.getElement());
+};
+
 const cards = generateCards(TASK_CARDS_AMOUNT);
 const filters = generateFilters();
 
