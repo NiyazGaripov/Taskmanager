@@ -37,6 +37,33 @@ const renderTaskCards = (taskCardsElement, card) => {
   renderComponent(taskCardsElement, taskComponent.getElement());
 };
 
+const renderBoard = (boardComponent, cards) => {
+  const taskCardsElement = boardComponent.getElement().querySelector(`.board__tasks`);
+
+  let showingTasksAmount = TASK_CARDS_AMOUNT_ON_START;
+  cards.slice(BEGIN_INDEX, showingTasksAmount)
+    .forEach((card) => {
+      renderTaskCards(taskCardsElement, card);
+    });
+
+  const loadMoreButtonComponent = new LoadMoreButton();
+
+  renderComponent(boardComponent.getElement(), loadMoreButtonComponent.getElement());
+
+  loadMoreButtonComponent.getElement().addEventListener(`click`, () => {
+    const prevTasksCount = showingTasksAmount;
+    showingTasksAmount = showingTasksAmount + TASK_CARDS_AMOUNT_LOAD_MORE;
+
+    cards.slice(prevTasksCount, showingTasksAmount)
+      .forEach((card) => renderTaskCards(taskCardsElement, card));
+
+    if (showingTasksAmount >= cards.length) {
+      loadMoreButtonComponent.getElement().remove();
+      loadMoreButtonComponent.removeElement();
+    }
+  });
+};
+
 const cards = generateCards(TASK_CARDS_AMOUNT);
 const filters = generateFilters();
 
