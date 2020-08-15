@@ -1,4 +1,4 @@
-import {RenderPosition, renderComponent} from './utils/render.js';
+import {renderComponent} from './utils/render.js';
 
 import {NavigationMenu} from './components/nav-menu.js';
 import {Filter} from './components/filter.js';
@@ -22,5 +22,5 @@ const filters = generateFilters();
 const pageMainElement = document.querySelector(`.main`);
 const pageMenuElement = pageMainElement.querySelector(`.main__control`);
 
-renderComponent(pageMenuElement, new NavigationMenu().getElement(), RenderPosition.BEFOREEND);
-renderComponent(pageMainElement, new Filter(filters).getElement(), RenderPosition.BEFOREEND);
+renderComponent(pageMenuElement, new NavigationMenu().getElement());
+renderComponent(pageMainElement, new Filter(filters).getElement());
