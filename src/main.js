@@ -19,11 +19,11 @@ const TASK_CARDS_AMOUNT_LOAD_MORE = 8;
 
 const renderTaskCards = (taskCardsElement, card) => {
   const onEditButtonClick = () => {
-    taskCardsElement.replaceChild(TaskEditCard.getElement(), Task.getElement());
+    taskCardsElement.replaceChild(taskEditComponent.getElement(), taskComponent.getElement());
   };
 
   const onEditFormSubmit = () => {
-    taskCardsElement.replaceChild(Task.getElement(), TaskEditCard.getElement());
+    taskCardsElement.replaceChild(taskComponent.getElement(), taskEditComponent.getElement());
   };
 
   const taskComponent = new Task(card);
