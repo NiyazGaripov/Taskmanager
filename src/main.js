@@ -26,11 +26,21 @@ const renderTaskCards = (taskCardsElement, card) => {
     taskCardsElement.replaceChild(taskComponent.getElement(), taskEditComponent.getElement());
   };
 
+  const onEscKeyDown = (evt) => {
+    const isEscKey = evt.key === `Escape` || evt.key === `Esc`;
+
+    if (isEscKey) {
+      replaceEditToTask();
+      document.removeEventListener(`keydown`, onEscKeyDown);
+    }
+  };
+
   const taskComponent = new Task(card);
   const editButton = taskComponent.getElement().querySelector(`.card__btn--edit`);
 
   editButton.addEventListener(`click`, () => {
     replaceTaskToEdit();
+    document.addEventListener(`keydown`, onEscKeyDown);
   });
 
   const taskEditComponent = new TaskEditCard(card);
@@ -38,6 +48,7 @@ const renderTaskCards = (taskCardsElement, card) => {
 
   editForm.addEventListener(`submit`, () => {
     replaceEditToTask();
+    document.removeEventListener(`keydown`, onEscKeyDown);
   });
 
   renderComponent(taskCardsElement, taskComponent.getElement());
