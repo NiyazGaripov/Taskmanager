@@ -1,4 +1,4 @@
-import {createElement} from './../utils/render.js';
+import {AbstractComponent} from "./abstract-component";
 
 const createBoardComponent = () => {
   return (
@@ -6,24 +6,8 @@ const createBoardComponent = () => {
   );
 };
 
-export class Board {
-  constructor() {
-    this._element = null;
-  }
-
+export class Board extends AbstractComponent {
   getTemplate() {
     return createBoardComponent();
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
