@@ -1,4 +1,4 @@
-import {createElement} from './../utils/render.js';
+import {AbstractComponent} from "./abstract-component";
 
 const createLoadMoreButtonComponent = () => {
   return (
@@ -6,24 +6,8 @@ const createLoadMoreButtonComponent = () => {
   );
 };
 
-export class LoadMoreButton {
-  constructor() {
-    this._element = null;
-  }
-
+export class LoadMoreButton extends AbstractComponent {
   getTemplate() {
     return createLoadMoreButtonComponent();
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
