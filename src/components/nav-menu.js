@@ -1,4 +1,4 @@
-import {createElement} from './../utils/render.js';
+import {AbstractComponent} from "./abstract-component";
 
 const createNavigationMenuComponent = () => {
   return (
@@ -33,24 +33,8 @@ const createNavigationMenuComponent = () => {
   );
 };
 
-export class NavigationMenu {
-  constructor() {
-    this._element = null;
-  }
-
+export class NavigationMenu extends AbstractComponent {
   getTemplate() {
     return createNavigationMenuComponent();
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
