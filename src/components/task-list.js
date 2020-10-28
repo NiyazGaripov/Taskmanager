@@ -1,4 +1,4 @@
-import {createElement} from './../utils/render.js';
+import {AbstractComponent} from "./abstract-component";
 
 const createTaskListComponent = () => {
   return (
@@ -6,24 +6,8 @@ const createTaskListComponent = () => {
   );
 };
 
-export class TaskList {
-  constructor() {
-    this._element = null;
-  }
-
+export class TaskList extends AbstractComponent {
   getTemplate() {
     return createTaskListComponent();
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
