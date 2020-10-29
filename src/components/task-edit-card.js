@@ -1,8 +1,8 @@
 import {MONTH_NAMES, DAYS, COLORS} from './../constants.js';
 import {getTime} from './../utils/time.js';
-import {createElement} from './../utils/render.js';
 import {createRepeatingDaysComponent} from './days.js';
 import {createColorsComponent} from './colors.js';
+import {AbstractComponent} from "./abstract-component";
 
 const createTaskEditCardComponent = (task) => {
   const {description, dueDate, color, repeatingDays} = task;
@@ -82,25 +82,13 @@ const createTaskEditCardComponent = (task) => {
   );
 };
 
-export class TaskEditCard {
+export class TaskEditCard extends AbstractComponent {
   constructor(task) {
+    super();
     this._task = task;
-    this._element = null;
   }
 
   getTemplate() {
     return createTaskEditCardComponent(this._task);
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
