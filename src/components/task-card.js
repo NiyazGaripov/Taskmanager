@@ -1,6 +1,6 @@
 import {MONTH_NAMES} from './../constants.js';
 import {getTime} from './../utils/time.js';
-import {createElement} from './../utils/render.js';
+import {AbstractComponent} from "./abstract-component";
 
 export const createTaskCardComponent = (amount) => {
   const {description, dueDate, color, repeatingDays, isArchive, isFavorite} = amount;
@@ -57,25 +57,13 @@ export const createTaskCardComponent = (amount) => {
   );
 };
 
-export class Task {
+export class Task extends AbstractComponent {
   constructor(task) {
+    super();
     this._task = task;
-    this._element = null;
   }
 
   getTemplate() {
     return createTaskCardComponent(this._task);
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
