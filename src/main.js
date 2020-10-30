@@ -1,4 +1,5 @@
 import {renderComponent} from './utils/render.js';
+import {onEscKeyDown} from './utils/common.js';
 
 import {NavigationMenu} from './components/nav-menu.js';
 import {Filter} from './components/filter.js';
@@ -27,13 +28,9 @@ const renderTaskCards = (taskCardsElement, card) => {
     taskCardsElement.replaceChild(taskComponent.getElement(), taskEditComponent.getElement());
   };
 
-  const onEscKeyDown = (evt) => {
-    const isEscKey = evt.key === `Escape` || evt.key === `Esc`;
-
-    if (isEscKey) {
-      replaceEditToTask();
-      document.removeEventListener(`keydown`, onEscKeyDown);
-    }
+  const onCardCloseEsc = (evt) => {
+    onEscKeyDown(evt, replaceEditToTask);
+    document.removeEventListener(`keydown`, onCardCloseEsc);
   };
 
   const taskComponent = new Task(card);
@@ -41,7 +38,7 @@ const renderTaskCards = (taskCardsElement, card) => {
 
   editButton.addEventListener(`click`, () => {
     replaceTaskToEdit();
-    document.addEventListener(`keydown`, onEscKeyDown);
+    document.addEventListener(`keydown`, onCardCloseEsc);
   });
 
   const taskEditComponent = new TaskEditCard(card);
@@ -49,7 +46,7 @@ const renderTaskCards = (taskCardsElement, card) => {
 
   editForm.addEventListener(`submit`, () => {
     replaceEditToTask();
-    document.removeEventListener(`keydown`, onEscKeyDown);
+    document.removeEventListener(`keydown`, onCardCloseEsc);
   });
 
   renderComponent(taskCardsElement, taskComponent.getElement());
