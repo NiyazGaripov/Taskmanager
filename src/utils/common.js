@@ -7,3 +7,11 @@ export const getRandomArrayItem = (array) => {
 
   return array[randomItem];
 };
+
+export const onEscKeyDown = (evt, callback) => {
+  const isEscKey = evt.key === `Escape` || evt.key === `Esc`;
+
+  if (isEscKey) {
+    callback();
+  }
+};
