@@ -20,3 +20,7 @@ export const createElement = (template) => {
 
   return newElement.firstChild;
 };
+
+export const replaceComponent = (parent, newComponent, oldComponent) => {
+  parent.replaceChild(newComponent, oldComponent);
+};
