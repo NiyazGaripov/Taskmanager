@@ -49,19 +49,19 @@ const renderTaskCards = (taskCardsElement, card) => {
     document.removeEventListener(`keydown`, onCardCloseEsc);
   });
 
-  renderComponent(taskCardsElement, taskComponent.getElement());
+  renderComponent(taskCardsElement, taskComponent);
 };
 
 const renderBoard = (boardComponent, cards) => {
   const isAllTasksArchived = cards.every((card) => card.isArchive);
 
   if (isAllTasksArchived) {
-    renderComponent(boardComponent.getElement(), new NoTaskList().getElement());
+    renderComponent(boardComponent.getElement(), new NoTaskList());
     return;
   }
 
-  renderComponent(boardComponent.getElement(), new Sort().getElement());
-  renderComponent(boardComponent.getElement(), new TaskList().getElement());
+  renderComponent(boardComponent.getElement(), new Sort());
+  renderComponent(boardComponent.getElement(), new TaskList());
 
   const taskCardsElement = boardComponent.getElement().querySelector(`.board__tasks`);
 
@@ -73,7 +73,7 @@ const renderBoard = (boardComponent, cards) => {
 
   const loadMoreButtonComponent = new LoadMoreButton();
 
-  renderComponent(boardComponent.getElement(), loadMoreButtonComponent.getElement());
+  renderComponent(boardComponent.getElement(), loadMoreButtonComponent);
 
   loadMoreButtonComponent.getElement().addEventListener(`click`, () => {
     const prevTasksCount = showingTasksAmount;
@@ -95,9 +95,9 @@ const filters = generateFilters();
 const pageMainElement = document.querySelector(`.main`);
 const pageMenuElement = pageMainElement.querySelector(`.main__control`);
 
-renderComponent(pageMenuElement, new NavigationMenu().getElement());
-renderComponent(pageMainElement, new Filter(filters).getElement());
+renderComponent(pageMenuElement, new NavigationMenu());
+renderComponent(pageMainElement, new Filter(filters));
 
 const boardComponent = new Board();
-renderComponent(pageMainElement, boardComponent.getElement());
+renderComponent(pageMainElement, boardComponent);
 renderBoard(boardComponent, cards);
