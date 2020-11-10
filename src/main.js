@@ -13,6 +13,7 @@ import {NoTaskList} from './components/no-tasks.js';
 
 import {generateCards} from './mock/card.js';
 import {generateFilters} from './mock/filter.js';
+import {replaceComponent} from './utils/render';
 
 const BEGIN_INDEX = 0;
 const TASK_CARDS_AMOUNT = 22;
@@ -21,11 +22,11 @@ const TASK_CARDS_AMOUNT_LOAD_MORE = 8;
 
 const renderTaskCards = (taskCardsElement, card) => {
   const replaceTaskToEdit = () => {
-    taskCardsElement.replaceChild(taskEditComponent.getElement(), taskComponent.getElement());
+    replaceComponent(taskCardsElement, taskEditComponent.getElement(), taskComponent.getElement());
   };
 
   const replaceEditToTask = () => {
-    taskCardsElement.replaceChild(taskComponent.getElement(), taskEditComponent.getElement());
+    replaceComponent(taskCardsElement, taskComponent.getElement(), taskEditComponent.getElement());
   };
 
   const onCardCloseEsc = (evt) => {
