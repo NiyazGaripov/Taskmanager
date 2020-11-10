@@ -1,4 +1,4 @@
-import {renderComponent} from './utils/render.js';
+import {renderComponent, removeComponent, replaceComponent} from './utils/render.js';
 import {onEscKeyDown} from './utils/common.js';
 
 import {NavigationMenu} from './components/nav-menu.js';
@@ -13,7 +13,6 @@ import {NoTaskList} from './components/no-tasks.js';
 
 import {generateCards} from './mock/card.js';
 import {generateFilters} from './mock/filter.js';
-import {replaceComponent} from './utils/render';
 
 const BEGIN_INDEX = 0;
 const TASK_CARDS_AMOUNT = 22;
@@ -84,7 +83,7 @@ const renderBoard = (boardComponent, cards) => {
       .forEach((card) => renderTaskCards(taskCardsElement, card));
 
     if (showingTasksAmount >= cards.length) {
-      loadMoreButtonComponent.getElement().remove();
+      removeComponent(loadMoreButtonComponent.getElement());
       loadMoreButtonComponent.removeElement();
     }
   });
