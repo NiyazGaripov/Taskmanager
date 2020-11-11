@@ -21,11 +21,11 @@ const TASK_CARDS_AMOUNT_LOAD_MORE = 8;
 
 const renderTaskCards = (taskCardsElement, card) => {
   const replaceTaskToEdit = () => {
-    replaceComponent(taskCardsElement, taskEditComponent.getElement(), taskComponent.getElement());
+    replaceComponent(taskEditComponent, taskComponent);
   };
 
   const replaceEditToTask = () => {
-    replaceComponent(taskCardsElement, taskComponent.getElement(), taskEditComponent.getElement());
+    replaceComponent(taskComponent, taskEditComponent);
   };
 
   const onCardCloseEsc = (evt) => {
