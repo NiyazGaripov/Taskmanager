@@ -91,4 +91,10 @@ export class TaskEditCard extends AbstractComponent {
   getTemplate() {
     return createTaskEditCardComponent(this._task);
   }
+
+  setFormSubmitHandler(callback) {
+    this.getElement()
+      .querySelector(`form`)
+      .addEventListener(`submit`, callback);
+  }
 }
