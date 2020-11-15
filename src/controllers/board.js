@@ -56,6 +56,26 @@ export class BoardController {
     const container = this._container.getElement();
     const isAllTasksArchived = cards.every((card) => card.isArchive);
 
+    const renderLoadMoreButton = () => {
+      if (showingTasksAmount >= cards.length) {
+        return;
+      }
+
+      renderComponent(container, this._loadMoreButtonComponent);
+
+      this._loadMoreButtonComponent.setClickHandler(() => {
+        const prevTasksCount = showingTasksAmount;
+        showingTasksAmount = showingTasksAmount + TASK_CARDS_AMOUNT_LOAD_MORE;
+
+        cards.slice(prevTasksCount, showingTasksAmount)
+          .forEach((card) => renderTaskCards(taskCardsElement, card));
+
+        if (showingTasksAmount >= cards.length) {
+          removeComponent(this._loadMoreButtonComponent);
+        }
+      });
+    };
+
     if (isAllTasksArchived) {
       renderComponent(container, this._noTasksComponent);
       return;
@@ -72,16 +92,11 @@ export class BoardController {
         renderTaskCards(taskCardsElement, card);
       });
 
-    renderComponent(container, this._loadMoreButtonComponent);
+    renderLoadMoreButton();
 
-    this._loadMoreButtonComponent.setClickHandler(() => {
-      const prevTasksCount = showingTasksAmount;
-      showingTasksAmount = showingTasksAmount + TASK_CARDS_AMOUNT_LOAD_MORE;
-      cards.slice(prevTasksCount, showingTasksAmount)
-        .forEach((card) => renderTaskCards(taskCardsElement, card));
-      if (showingTasksAmount >= cards.length) {
-        removeComponent(this._loadMoreButtonComponent);
-      }
+    this._sortComponent.setSortTypeChangeHandler(() => {
+
     });
+
   }
 }
